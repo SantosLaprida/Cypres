@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using WPFLocalizeExtension.Engine;
 using Cypres2._0.Data.Connection.Access;
 using Cypres2._0.Data.Services.ManoDeObra;
+using Cypres2._0.ViewModels.ManoDeObra;
 
 namespace Cypres2._0.Views.ManoDeObra
 {
@@ -32,10 +33,12 @@ namespace Cypres2._0.Views.ManoDeObra
             //Temporary, this line is going to be on the main window of the application
             LocalizeDictionary.Instance.Culture = new System.Globalization.CultureInfo("es");
             // Temporary to check data base connection
-            TestDatabaseConnection();
+            //TestDatabaseConnection();
             var connection = new DatabaseConnection();
-            _service = new ManoDeObraService(connection);
-            PrintManoDeObra();
+            var service = new ManoDeObraService(connection);
+            //PrintManoDeObra();\
+
+            DataContext = new ManoDeObraViewModel(service);
         }
 
         private void PrintManoDeObra()

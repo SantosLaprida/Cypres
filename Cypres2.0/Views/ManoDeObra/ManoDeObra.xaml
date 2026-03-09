@@ -51,10 +51,19 @@
                         BorderThickness="1"
                         CornerRadius="5"
                         SnapsToDevicePixels="True">
-                    <ListView BorderThickness="0"/>
+                    <ListView BorderThickness="0"
+                        ItemsSource="{Binding FamiliaManoDeObra}"  
+                        DisplayMemberPath="Descripcion">
+                    </ListView>
 
                 </Border>
             </Grid>
+
+            <Grid Grid.Column="1">
+                <DataGrid 
+                    ItemsSource="{Binding ManoDeObraGridDto}"></DataGrid>
+            </Grid>
+
         </Grid>
     </Grid>
 </Window>

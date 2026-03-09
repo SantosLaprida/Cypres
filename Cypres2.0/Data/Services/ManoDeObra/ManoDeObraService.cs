@@ -20,6 +20,12 @@ namespace Cypres2._0.Data.Services.ManoDeObra
             _db = db;
         }
 
+        private static double GetDoubleSafe(OleDbDataReader reader, string column) 
+        {
+            var value = reader[column];
+            return value == DBNull.Value ? 0.0 : Convert.ToDouble(value);
+        }
+
         public List<ManoDeObraModel> GetManoDeObra() 
         {
             var result = new List<ManoDeObraModel>();
@@ -38,20 +44,16 @@ namespace Cypres2._0.Data.Services.ManoDeObra
                             Id = Convert.ToInt32(reader["Id"]),
                             Codigo = Convert.ToInt32(reader["Codigo"]),
                             Descripcion = reader["Descripcion"].ToString(),
-                            IdUnidad = Convert.ToInt32(reader["IdUnidad"]),
+                            IdUnidad = Convert.ToInt32(reader["Id_unidad"]),
                             IdFamilia = Convert.ToInt32(reader["Id_familia"]),
-                            COrigen = reader["C_Origen"] != DBNull.Value
-                            ? Convert.ToDouble(reader["C_Origen"])
-                            : 0.0,
+                            COrigen = GetDoubleSafe(reader, "C_Origen"),
                             IdMoneda = Convert.ToInt32(reader["Id_moneda"]),
-                            CFinal = reader["C_Final"] != DBNull.Value
-                            ? Convert.ToDouble(reader["C_Final"])
-                            : 0.0,
-                            VRef = reader["V_ref"].ToString(),
-                            EquiposRef = Convert.ToInt32(reader["Equipos"]),
+                            CFinal = GetDoubleSafe(reader, "C_Final"),
+                            VRef = reader["V_ref"]?.ToString() ?? string.Empty,
+                            EquiposRef = reader["Equipos"] != DBNull.Value ? Convert.ToInt32(reader["Equipos"]) : 0,
                             Fecha = Convert.ToDateTime(reader["Fecha"]),
-                            IdBdatos = Convert.ToInt32(reader["Id_bdatos"]),
-                            IndiceRedeterminacion = Convert.ToInt32(reader["Indice_redeterminacion"]),
+                            IdBdatos = reader["Id_bdatos"] != DBNull.Value ? Convert.ToInt32(reader["Id_bdatos"]) : 0,
+                            IndiceRedeterminacion = reader["Indice_redeterminacion"] != DBNull.Value ? Convert.ToInt32(reader["Indice_redeterminacion"]) : 0,
                             Revisado = Convert.ToBoolean(reader["Revisado"]),
                             Calificada = Convert.ToBoolean(reader["Calificada"])
                         });
@@ -68,7 +70,7 @@ namespace Cypres2._0.Data.Services.ManoDeObra
             var result = new List<FamiliaManoDeObraModel>();
 
             using var connection = _db.GetOpenConnection();
-            string query = "SELECT * FROM FamiliaManoDeObra";
+            string query = "SELECT * FROM familia_mano_de_obra";
 
             using var command = new OleDbCommand(query, connection);
             using var reader = command.ExecuteReader();
@@ -143,8 +145,9 @@ namespace Cypres2._0.Data.Services.ManoDeObra
         var result = new List<ManoDeObraGridDto>();
             using var connection = _db.GetOpenConnection();
 
-        string query = @"
+            string query = @"
             SELECT m.Id,
+                   m.Codigo,  
                    m.Descripcion,
                    u.Descripcion AS Unidad,
                    mo.Descripcion AS Moneda,
@@ -154,9 +157,9 @@ namespace Cypres2._0.Data.Services.ManoDeObra
                    m.Fecha,
                    m.Revisado,
                    m.Calificada
-            FROM ManoDeObra m
-            LEFT JOIN Unidades u ON m.UnidadId = u.Id
-            LEFT JOIN Monedas mo ON m.MonedaId = mo.Id";
+            FROM (mano_de_obra m
+            LEFT JOIN Unidades u ON m.Id_unidad = u.Id)
+            LEFT JOIN Monedas mo ON m.Id_moneda = mo.Id";
 
             using var command = new OleDbCommand(query, connection);
             using var reader = command.ExecuteReader();
@@ -164,13 +167,31 @@ namespace Cypres2._0.Data.Services.ManoDeObra
             {
                 result.Add(new ManoDeObraGridDto
                 {
+                    //Id = Convert.ToInt32(reader["Id"]),
+                    //Codigo = Convert.ToInt32(reader["Codigo"]),
+                    //Descripcion = reader["Descripcion"].ToString(),
+                    //IdUnidad = Convert.ToInt32(reader["Id_unidad"]),
+                    //IdFamilia = Convert.ToInt32(reader["Id_familia"]),
+                    //COrigen = GetDoubleSafe(reader, "C_Origen"),
+                    //IdMoneda = Convert.ToInt32(reader["Id_moneda"]),
+                    //CFinal = GetDoubleSafe(reader, "C_Final"),
+                    //VRef = reader["V_ref"]?.ToString() ?? string.Empty,
+                    //EquiposRef = reader["Equipos"] != DBNull.Value ? Convert.ToInt32(reader["Equipos"]) : 0,
+                    //Fecha = Convert.ToDateTime(reader["Fecha"]),
+                    //IdBdatos = reader["Id_bdatos"] != DBNull.Value ? Convert.ToInt32(reader["Id_bdatos"]) : 0,
+                    //IndiceRedeterminacion = reader["Indice_redeterminacion"] != DBNull.Value ? Convert.ToInt32(reader["Indice_redeterminacion"]) : 0,
+                    //Revisado = Convert.ToBoolean(reader["Revisado"]),
+                    //Calificada = Convert.ToBoolean(reader["Calificada"])
+
+
+
                     Id = Convert.ToInt32(reader["Id"]),
                     Codigo = Convert.ToInt32(reader["Codigo"]),
                     Descripcion = reader["Descripcion"]?.ToString() ?? string.Empty,
                     Unidad = reader["Unidad"]?.ToString() ?? string.Empty,
                     Moneda = reader["Moneda"]?.ToString() ?? string.Empty,
-                    COrigen = reader["C_Origen"] != DBNull.Value ? Convert.ToDouble(reader["C_Origen"]) : 0,
-                    CFinal = reader["C_Final"] != DBNull.Value ? Convert.ToDouble(reader["C_Final"]) : 0,
+                    COrigen = GetDoubleSafe(reader, "C_Origen"),
+                    CFinal = GetDoubleSafe(reader, "C_Final"),
                     VRef = reader["V_ref"]?.ToString() ?? string.Empty,
                     Fecha = reader["Fecha"] != DBNull.Value ? Convert.ToDateTime(reader["Fecha"]) : DateTime.MinValue,
                     Revisado = reader["Revisado"] != DBNull.Value && Convert.ToBoolean(reader["Revisado"]),
