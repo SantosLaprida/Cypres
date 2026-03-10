@@ -14,5 +14,6 @@ namespace Cypres2._0.Views.ManoDeObra.UserControls
         {
             InitializeComponent();
         }
+
     }
 }

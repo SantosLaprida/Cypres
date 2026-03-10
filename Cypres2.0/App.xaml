@@ -3,16 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Cypres2._0"
              xmlns:primitives="clr-namespace:System.Windows.Controls.Primitives;assembly=PresentationFramework"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              StartupUri="Views/ManoDeObra/ManoDeObra.xaml">
 
     <Application.Resources>
 
         <!-- Fonts -->
         <FontFamily x:Key="PrimaryFont">Segoe UI Variable</FontFamily>
+        <FontFamily x:Key="SecondaryFont">Courier New</FontFamily>
+
+        <!-- Font Sizes -->
+        <sys:Double x:Key="FontSizeSmall">11</sys:Double>
+        <sys:Double x:Key="FontSizeNormal">13</sys:Double>
+        <sys:Double x:Key="FontSizeLarge">16</sys:Double>
+
 
         <!-- Brushes -->
         <SolidColorBrush x:Key="LightTextBrush" Color="#F0F0F0" />
         <SolidColorBrush x:Key="MenuBackgroundBrush" Color="#517891" />
+        <SolidColorBrush x:Key="BorderColor" Color="DarkGray" />
 
         <!-- MenuItem style -->
         <Style TargetType="MenuItem">

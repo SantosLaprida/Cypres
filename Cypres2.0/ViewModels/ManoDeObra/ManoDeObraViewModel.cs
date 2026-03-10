@@ -39,6 +39,7 @@ namespace Cypres2._0.ViewModels.ManoDeObra
 
                 FamiliaManoDeObra.Clear();
                 ManoDeObra.Clear();
+                ManoDeObraGridDto.Clear();
 
                 foreach (var item in manoDeObra)
                     ManoDeObra.Add(item);

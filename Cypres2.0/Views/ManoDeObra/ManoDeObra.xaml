@@ -13,7 +13,7 @@
         lex:ResxLocalizationProvider.DefaultAssembly="Cypres2._0"
         lex:ResxLocalizationProvider.DefaultDictionary="Properties.Resources.ManoDeObra.Strings"
         
-        Title="Mano de Obra" Height="700" Width="1200">
+        Title="Mano de Obra" Height="700" Width="1500">
 
      <Grid>
         <Grid.RowDefinitions>
@@ -47,23 +47,45 @@
                 </Grid.RowDefinitions>
 
 
-                <Border Grid.Row="1" BorderBrush="{StaticResource MenuBackgroundBrush}" Margin="20"
+                <Border Grid.Row="1" BorderBrush="{StaticResource BorderColor}" Margin="20"
                         BorderThickness="1"
                         CornerRadius="5"
                         SnapsToDevicePixels="True">
-                    <ListView BorderThickness="0"
-                        ItemsSource="{Binding FamiliaManoDeObra}"  
-                        DisplayMemberPath="Descripcion">
-                    </ListView>
 
+                    <Grid>
+                        <Grid.OpacityMask>
+                            <VisualBrush Visual="{Binding ElementName=border}"/>
+                        </Grid.OpacityMask>
+                        <Border
+                            x:Name="border"
+                            Background="White"
+                            CornerRadius="5"/>
+                        <ListView BorderThickness="0"
+                                FontFamily="{StaticResource SecondaryFont}"
+                                FontSize="{StaticResource FontSizeNormal}"
+                                ItemsSource="{Binding FamiliaManoDeObra}"  
+                                DisplayMemberPath="Descripcion">
+                        </ListView>
+                    </Grid>
                 </Border>
             </Grid>
 
             <Grid Grid.Column="1">
-                <DataGrid 
-                    ItemsSource="{Binding ManoDeObraGridDto}"></DataGrid>
-            </Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="15*"/>
+                </Grid.RowDefinitions>
 
+                <Border Grid.Row="1" BorderBrush="{StaticResource BorderColor}" Margin="20"
+                    BorderThickness="1"
+                    CornerRadius="5"
+                    SnapsToDevicePixels="True">
+                    <UserControls:ManoDeObraDataGrid
+                        ItemsSource="{Binding ManoDeObraGridDto}">
+
+                    </UserControls:ManoDeObraDataGrid>
+                </Border>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

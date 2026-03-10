@@ -106,6 +106,87 @@ namespace Cypres2._0.Properties.Resources.ManoDeObra {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to C_Final.
+        /// </summary>
+        public static string GridC_Final {
+            get {
+                return ResourceManager.GetString("GridC_Final", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C_Origin.
+        /// </summary>
+        public static string GridC_Origen {
+            get {
+                return ResourceManager.GetString("GridC_Origen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Code.
+        /// </summary>
+        public static string GridCodigo {
+            get {
+                return ResourceManager.GetString("GridCodigo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Descripcion.
+        /// </summary>
+        public static string GridDescripcion {
+            get {
+                return ResourceManager.GetString("GridDescripcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string GridFecha {
+            get {
+                return ResourceManager.GetString("GridFecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currency.
+        /// </summary>
+        public static string GridMoneda {
+            get {
+                return ResourceManager.GetString("GridMoneda", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Revised.
+        /// </summary>
+        public static string GridRevisado {
+            get {
+                return ResourceManager.GetString("GridRevisado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Un..
+        /// </summary>
+        public static string GridUnidad {
+            get {
+                return ResourceManager.GetString("GridUnidad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ref. Value.
+        /// </summary>
+        public static string GridValorReferencia {
+            get {
+                return ResourceManager.GetString("GridValorReferencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File.
         /// </summary>
         public static string MenuArchivo {

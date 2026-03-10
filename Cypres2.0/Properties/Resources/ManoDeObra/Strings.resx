@@ -132,6 +132,33 @@
   <data name="BotonMinuscula" xml:space="preserve">
     <value>To Lower</value>
   </data>
+  <data name="GridCodigo" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="GridC_Final" xml:space="preserve">
+    <value>C_Final</value>
+  </data>
+  <data name="GridC_Origen" xml:space="preserve">
+    <value>C_Origin</value>
+  </data>
+  <data name="GridDescripcion" xml:space="preserve">
+    <value>Descripcion</value>
+  </data>
+  <data name="GridFecha" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="GridMoneda" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="GridRevisado" xml:space="preserve">
+    <value>Revised</value>
+  </data>
+  <data name="GridUnidad" xml:space="preserve">
+    <value>Un.</value>
+  </data>
+  <data name="GridValorReferencia" xml:space="preserve">
+    <value>Ref. Value</value>
+  </data>
   <data name="MenuArchivo" xml:space="preserve">
     <value>File</value>
   </data>
