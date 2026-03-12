@@ -168,24 +168,6 @@ namespace Cypres2._0.Data.Services.ManoDeObra
             {
                 result.Add(new ManoDeObraGridDto
                 {
-                    //Id = Convert.ToInt32(reader["Id"]),
-                    //Codigo = Convert.ToInt32(reader["Codigo"]),
-                    //Descripcion = reader["Descripcion"].ToString(),
-                    //IdUnidad = Convert.ToInt32(reader["Id_unidad"]),
-                    //IdFamilia = Convert.ToInt32(reader["Id_familia"]),
-                    //COrigen = GetDoubleSafe(reader, "C_Origen"),
-                    //IdMoneda = Convert.ToInt32(reader["Id_moneda"]),
-                    //CFinal = GetDoubleSafe(reader, "C_Final"),
-                    //VRef = reader["V_ref"]?.ToString() ?? string.Empty,
-                    //EquiposRef = reader["Equipos"] != DBNull.Value ? Convert.ToInt32(reader["Equipos"]) : 0,
-                    //Fecha = Convert.ToDateTime(reader["Fecha"]),
-                    //IdBdatos = reader["Id_bdatos"] != DBNull.Value ? Convert.ToInt32(reader["Id_bdatos"]) : 0,
-                    //IndiceRedeterminacion = reader["Indice_redeterminacion"] != DBNull.Value ? Convert.ToInt32(reader["Indice_redeterminacion"]) : 0,
-                    //Revisado = Convert.ToBoolean(reader["Revisado"]),
-                    //Calificada = Convert.ToBoolean(reader["Calificada"])
-
-
-
                     Id = Convert.ToInt32(reader["Id"]),
                     Codigo = Convert.ToInt32(reader["Codigo"]),
                     Descripcion = reader["Descripcion"]?.ToString() ?? string.Empty,
@@ -201,6 +183,45 @@ namespace Cypres2._0.Data.Services.ManoDeObra
                 });
             }
             return result;
+        }
+
+        public void UnassignFamilia(int familiaId) 
+        {
+            using var connection = _db.GetOpenConnection();
+            string query = "UPDATE mano_de_obra SET Id_familia = 0 WHERE Id_familia = @Id";
+            using var command = new OleDbCommand(query, connection);
+            command.Parameters.AddWithValue("@Id", familiaId);
+            command.ExecuteNonQuery();
+        }
+
+        public void DeleteFamilia(int familiaId)
+        {
+            using var connection = _db.GetOpenConnection();
+            string query = "DELETE FROM familia_mano_de_obra WHERE ID = ?";
+            using var command = new OleDbCommand(query, connection);
+            command.Parameters.AddWithValue("?", familiaId);
+            int rowsAffected = command.ExecuteNonQuery();
+            System.Diagnostics.Debug.WriteLine($"Rows deleted: {rowsAffected}");
+        }
+
+
+        public void AddFamilia(FamiliaManoDeObraModel familia) 
+        {
+            using var connection = _db.GetOpenConnection();
+            string query = "INSERT INTO familia_mano_de_obra (Descripcion) VALUES (?)";
+            using var command = new OleDbCommand(query, connection);
+            command.Parameters.AddWithValue("?", familia.Descripcion);
+            command.ExecuteNonQuery();
+        }
+
+        public void UpdateFamilia(FamiliaManoDeObraModel familia) 
+        {
+            using var connection = _db.GetOpenConnection();
+            string query = "UPDATE familia_mano_de_obra SET Descripcion = ? WHERE Id = ?";
+            using var command = new OleDbCommand(query, connection);
+            command.Parameters.AddWithValue("?", familia.Descripcion);
+            command.Parameters.AddWithValue("?", familia.Id);
+            command.ExecuteNonQuery();
         }
 
         public void Add(ManoDeObraModel item)

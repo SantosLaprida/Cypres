@@ -17,17 +17,14 @@ namespace Cypres2._0.Data.Connection.Access
             {
                 if (_connectionString == null)
                 {
-                    string basePath = AppDomain.CurrentDomain.BaseDirectory;
-                    string dbFullPath = Path.Combine(basePath, DatabaseFolder, DatabaseFileName);
+                    string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                    string projectRoot = Path.GetFullPath(Path.Combine(baseDirectory, @"..\..\..\"));
+                    string dbFullPath = Path.Combine(projectRoot, DatabaseFolder, DatabaseFileName);
 
                     if (!File.Exists(dbFullPath))
-                    {
                         throw new FileNotFoundException($"Database file not found: {dbFullPath}");
-                    }
 
-                    // Modern provider for .accdb files (requires Access Database Engine)
                     _connectionString = $@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={dbFullPath};";
-
                 }
                 return _connectionString;
             }

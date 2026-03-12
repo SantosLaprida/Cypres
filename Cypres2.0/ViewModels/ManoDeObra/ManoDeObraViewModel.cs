@@ -1,6 +1,7 @@
 ﻿using Cypres2._0.Data.Connection.Access;
 using Cypres2._0.Data.Services.ManoDeObra;
 using Cypres2._0.Models.ManoDeObra;
+using Cypres2._0.Views.ManoDeObra;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -26,6 +27,9 @@ namespace Cypres2._0.ViewModels.ManoDeObra
                 _selectedFamilia = value;
                 OnPropertyChanged(nameof(SelectedFamilia));
                 FilterGrid();
+                //Notify commands that depend on this property
+                ((RelayCommand)EliminarFamiliaCommand).RaiseCanExecuteChanged();
+                ((RelayCommand)EditarFamiliaCommand).RaiseCanExecuteChanged();
             }
         }
         public ObservableCollection<ManoDeObraModel> ManoDeObra { get; set; }
@@ -33,6 +37,9 @@ namespace Cypres2._0.ViewModels.ManoDeObra
         public ObservableCollection<ManoDeObraGridDto> ManoDeObraGridDto { get; set; }
         public ICommand LoadCommand { get; }
         public ICommand ListadoGeneralCommand { get; }
+        public ICommand EliminarFamiliaCommand { get; }
+        public ICommand EditarFamiliaCommand { get; }
+        public ICommand CrearFamiliaCommand { get; }
         public ManoDeObraViewModel(IManoDeObraService manoDeObraService)
         {
             _manoDeObraService = manoDeObraService;
@@ -41,11 +48,15 @@ namespace Cypres2._0.ViewModels.ManoDeObra
             ManoDeObraGridDto = new ObservableCollection<ManoDeObraGridDto>();
             LoadCommand = new RelayCommand(Load);
             ListadoGeneralCommand = new RelayCommand(ShowAllFamilias);
+            EliminarFamiliaCommand = new RelayCommand(EliminarFamilia, () => _selectedFamilia != null);
+            EditarFamiliaCommand = new RelayCommand(EditarFamilia, () => _selectedFamilia != null);
+            CrearFamiliaCommand = new RelayCommand(CrearFamilia);
             Load();
         }
 
         private void Load()
         {
+            // TODO: CLEAN CODE
             try
             {
                 var manoDeObra = _manoDeObraService.GetManoDeObra();
@@ -70,6 +81,25 @@ namespace Cypres2._0.ViewModels.ManoDeObra
                 // later replace with proper logging
                 //System.Diagnostics.Debug.WriteLine(ex.Message);
                 System.Windows.MessageBox.Show(ex.Message, "Error");
+            }
+        }
+
+        private void EliminarFamilia()
+        {
+            var mensaje = Properties.Resources.ManoDeObra.Strings.MensajeEliminarFamilia;
+
+            var result = System.Windows.MessageBox.Show(
+                $"{mensaje} '{_selectedFamilia.Descripcion}'?",
+                Properties.Resources.ManoDeObra.Strings.SubMenuEliminar,
+                System.Windows.MessageBoxButton.YesNo,
+                System.Windows.MessageBoxImage.Warning
+            );
+
+            if (result == System.Windows.MessageBoxResult.Yes)
+            {
+                _manoDeObraService.UnassignFamilia(_selectedFamilia.Id);
+                _manoDeObraService.DeleteFamilia(_selectedFamilia.Id);
+                Load();
             }
         }
 
@@ -100,6 +130,20 @@ namespace Cypres2._0.ViewModels.ManoDeObra
             ManoDeObraGridDto.Clear();
             foreach (var item in _allRows) 
                 if (item.IdFamilia == _selectedFamilia.Id) ManoDeObraGridDto.Add(item);
+        }
+
+        private void EditarFamilia()
+        {
+            var dialog = new FamiliaDialog(_selectedFamilia, _manoDeObraService);
+            dialog.ShowDialog();
+            Load();
+        }
+
+        private void CrearFamilia()
+        {
+            var dialog = new FamiliaDialog(_manoDeObraService);
+            dialog.ShowDialog();
+            Load();
         }
     }
 }

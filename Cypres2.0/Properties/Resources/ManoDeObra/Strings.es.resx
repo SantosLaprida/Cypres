@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BotonAceptar" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
   <data name="BotonCrear" xml:space="preserve">
     <value>Crear</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="BotonMinuscula" xml:space="preserve">
     <value>Minuscula</value>
+  </data>
+  <data name="BotonTerminar" xml:space="preserve">
+    <value>Terminar</value>
   </data>
   <data name="GridCodigo" xml:space="preserve">
     <value>Codigo</value>
@@ -161,6 +167,9 @@
   </data>
   <data name="GridValorReferencia" xml:space="preserve">
     <value>Valor de Referencia</value>
+  </data>
+  <data name="MensajeEliminarFamilia" xml:space="preserve">
+    <value>Seguro quiere eliminar</value>
   </data>
   <data name="MenuArchivo" xml:space="preserve">
     <value>Archivo</value>

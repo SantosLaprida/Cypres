@@ -16,8 +16,13 @@ namespace Cypres2._0.Data.Services.ManoDeObra
         List<FamiliaManoDeObraModel> GetFamilias();
         List<UnidadesModel> GetUnidades();
         List<MonedasModel> GetMonedas();
-
         List<ManoDeObraGridDto> GetManoDeObraRows();
+
+        void UnassignFamilia(int familiaId);
+        void DeleteFamilia(int familiaId);
+
+        void AddFamilia(FamiliaManoDeObraModel familia);
+        void UpdateFamilia(FamiliaManoDeObraModel familia);
 
         void Add(ManoDeObraModel item);
         void Update(ManoDeObraModel item);

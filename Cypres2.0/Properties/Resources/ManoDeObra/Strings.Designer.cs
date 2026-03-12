@@ -61,6 +61,15 @@ namespace Cypres2._0.Properties.Resources.ManoDeObra {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string BotonAceptar {
+            get {
+                return ResourceManager.GetString("BotonAceptar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create.
         /// </summary>
         public static string BotonCrear {
@@ -115,6 +124,15 @@ namespace Cypres2._0.Properties.Resources.ManoDeObra {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Finish.
+        /// </summary>
+        public static string BotonTerminar {
+            get {
+                return ResourceManager.GetString("BotonTerminar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to C_Final.
         /// </summary>
         public static string GridC_Final {
@@ -142,7 +160,7 @@ namespace Cypres2._0.Properties.Resources.ManoDeObra {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Descripcion.
+        ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string GridDescripcion {
             get {
@@ -192,6 +210,15 @@ namespace Cypres2._0.Properties.Resources.ManoDeObra {
         public static string GridValorReferencia {
             get {
                 return ResourceManager.GetString("GridValorReferencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete.
+        /// </summary>
+        public static string MensajeEliminarFamilia {
+            get {
+                return ResourceManager.GetString("MensajeEliminarFamilia", resourceCulture);
             }
         }
         

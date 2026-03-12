@@ -20,7 +20,7 @@ namespace Cypres2._0.ViewModels
 
         public event EventHandler? CanExecuteChanged;
 
-        public bool CanExecute(object? parameter) => _execute();
+        public bool CanExecute(object? parameter) => _canExecute == null || _canExecute();
 
         public void Execute(object? parameter) => _execute();
         public void RaiseCanExecuteChanged()

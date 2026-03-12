@@ -73,6 +73,10 @@
                             <Trigger Property="IsSubmenuOpen" Value="True">
                                 <Setter TargetName="Border" Property="Background" Value="#6A92B5" />
                             </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Border" Property="Opacity" Value="0.4"/>
+                                <Setter Property="Foreground" Value="#AAAAAA"/>
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>

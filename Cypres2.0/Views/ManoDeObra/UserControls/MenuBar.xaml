@@ -25,9 +25,12 @@
             </MenuItem>
 
             <MenuItem Header="{lex:Loc MenuFamilia}">
-                <MenuItem Header="{lex:Loc SubMenuCrear}" />
-                <MenuItem Header="{lex:Loc SubMenuEliminar}" />
-                <MenuItem Header="{lex:Loc SubMenuEditar}" />
+                <MenuItem Header="{lex:Loc SubMenuCrear}" 
+                          Command="{Binding CrearFamiliaCommand}"/>
+                <MenuItem Header="{lex:Loc SubMenuEliminar}"
+                          Command="{Binding EliminarFamiliaCommand}"/>
+                <MenuItem Header="{lex:Loc SubMenuEditar}" 
+                          Command="{Binding EditarFamiliaCommand}"/>
             </MenuItem>
 
             <MenuItem Header="{lex:Loc MenuPrecios}">
