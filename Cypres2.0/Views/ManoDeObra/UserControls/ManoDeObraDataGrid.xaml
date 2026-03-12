@@ -23,9 +23,28 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Margin" Value="0,0,5,0"/>
         </Style>
+        <Style x:Key="CenterCell" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
+        </Style>
         <Style x:Key="CenterCheckBox" TargetType="CheckBox">
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="LeftHeader" TargetType="DataGridColumnHeader">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="5,0,0,0"/>
+        </Style>
+        <Style x:Key="RightHeader" TargetType="DataGridColumnHeader">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="Padding" Value="0,0,5,0"/>
+        </Style>
+        <Style x:Key="CenterHeader" TargetType="DataGridColumnHeader">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
         </Style>
     </UserControl.Resources>
    
@@ -48,31 +67,38 @@
             </Style>
         </DataGrid.ColumnHeaderStyle>
         <DataGrid.Columns>
-            <DataGridTextColumn Header="{lex:Loc GridCodigo}"      
+            <DataGridTextColumn Header="{lex:Loc GridCodigo}"  
+                                HeaderStyle="{StaticResource CenterHeader}"
                                 Binding="{Binding Id}"      
                                 Width="0.5*" 
-                                ElementStyle="{StaticResource LeftCell}"/>
-            <DataGridTextColumn Header="{lex:Loc GridDescripcion}" 
+                                ElementStyle="{StaticResource CenterCell}"/>
+            <DataGridTextColumn Header="{lex:Loc GridDescripcion}"
+                                HeaderStyle="{StaticResource LeftHeader}"
                                 Binding="{Binding Descripcion}" 
                                 Width="1.5*"
                                 ElementStyle="{StaticResource LeftCell}"/>
-            <DataGridTextColumn Header="{lex:Loc GridUnidad}"      
+            <DataGridTextColumn Header="{lex:Loc GridUnidad}" 
+                                HeaderStyle="{StaticResource LeftHeader}"
                                 Binding="{Binding Unidad}"      
                                 Width="0.5*"
                                 ElementStyle="{StaticResource LeftCell}"/>
-            <DataGridTextColumn Header="{lex:Loc GridMoneda}"      
+            <DataGridTextColumn Header="{lex:Loc GridMoneda}"
+                                HeaderStyle="{StaticResource LeftHeader}"
                                 Binding="{Binding Moneda}"      
                                 Width="0.5*"
                                 ElementStyle="{StaticResource LeftCell}"/>
-            <DataGridTextColumn Header="{lex:Loc GridC_Origen}"   
+            <DataGridTextColumn Header="{lex:Loc GridC_Origen}"  
+                                HeaderStyle="{StaticResource RightHeader}"
                                 Binding="{Binding COrigen, StringFormat=N2}" 
                                 Width="0.7*" 
                                 ElementStyle="{StaticResource RightCell}"/>
             <DataGridTextColumn Header="{lex:Loc GridC_Final}"    
+                                HeaderStyle="{StaticResource RightHeader}"
                                 Binding="{Binding CFinal,  StringFormat=N2}" 
                                 Width="0.7*"
                                 ElementStyle="{StaticResource RightCell}"/>
-            <DataGridCheckBoxColumn Header="{lex:Loc GridRevisado}"   
+            <DataGridCheckBoxColumn Header="{lex:Loc GridRevisado}"  
+                                    HeaderStyle="{StaticResource CenterHeader}"
                                     Binding="{Binding Revisado}"   
                                     Width="0.5*" 
                                     ElementStyle="{StaticResource CenterCheckBox}"/>

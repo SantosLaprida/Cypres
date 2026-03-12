@@ -11,6 +11,8 @@ namespace Cypres2._0.Models.ManoDeObra
     {
         public int Id { get; set; }
         public int Codigo { get; set; }
+
+        public int IdFamilia { get; set; }
         public string Descripcion { get; set; }
         public string Unidad { get; set; }
         public string Moneda { get; set; }

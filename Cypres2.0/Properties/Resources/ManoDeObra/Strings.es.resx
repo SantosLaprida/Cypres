@@ -126,6 +126,9 @@
   <data name="BotonEliminar" xml:space="preserve">
     <value>Eliminar</value>
   </data>
+  <data name="BotonListadoGeneral" xml:space="preserve">
+    <value>Listado General</value>
+  </data>
   <data name="BotonMayuscula" xml:space="preserve">
     <value>Mayuscula</value>
   </data>

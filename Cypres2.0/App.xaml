@@ -23,6 +23,16 @@
         <SolidColorBrush x:Key="MenuBackgroundBrush" Color="#517891" />
         <SolidColorBrush x:Key="BorderColor" Color="DarkGray" />
 
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="{StaticResource MenuBackgroundBrush}"/>
+            <Setter Property="Padding" Value="15 5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/> 
+            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+        </Style>
+
         <!-- MenuItem style -->
         <Style TargetType="MenuItem">
             <Setter Property="Foreground" Value="{StaticResource LightTextBrush}" />

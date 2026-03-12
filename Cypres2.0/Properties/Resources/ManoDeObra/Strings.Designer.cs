@@ -88,6 +88,15 @@ namespace Cypres2._0.Properties.Resources.ManoDeObra {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to General Listing.
+        /// </summary>
+        public static string BotonListadoGeneral {
+            get {
+                return ResourceManager.GetString("BotonListadoGeneral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to To Upper.
         /// </summary>
         public static string BotonMayuscula {

@@ -126,6 +126,9 @@
   <data name="BotonEliminar" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="BotonListadoGeneral" xml:space="preserve">
+    <value>General Listing</value>
+  </data>
   <data name="BotonMayuscula" xml:space="preserve">
     <value>To Upper</value>
   </data>
