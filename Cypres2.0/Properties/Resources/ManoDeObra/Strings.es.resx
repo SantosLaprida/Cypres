@@ -139,7 +139,7 @@
     <value>Minuscula</value>
   </data>
   <data name="BotonTerminar" xml:space="preserve">
-    <value>Terminar</value>
+    <value>Cancelar</value>
   </data>
   <data name="GridCodigo" xml:space="preserve">
     <value>Codigo</value>

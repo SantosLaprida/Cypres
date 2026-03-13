@@ -78,15 +78,15 @@
                                 Width="1.5*"
                                 ElementStyle="{StaticResource LeftCell}"/>
             <DataGridTextColumn Header="{lex:Loc GridUnidad}" 
-                                HeaderStyle="{StaticResource LeftHeader}"
+                                HeaderStyle="{StaticResource CenterHeader}"
                                 Binding="{Binding Unidad}"      
                                 Width="0.5*"
-                                ElementStyle="{StaticResource LeftCell}"/>
+                                ElementStyle="{StaticResource CenterCell}"/>
             <DataGridTextColumn Header="{lex:Loc GridMoneda}"
-                                HeaderStyle="{StaticResource LeftHeader}"
+                                HeaderStyle="{StaticResource CenterHeader}"
                                 Binding="{Binding Moneda}"      
                                 Width="0.5*"
-                                ElementStyle="{StaticResource LeftCell}"/>
+                                ElementStyle="{StaticResource CenterCell}"/>
             <DataGridTextColumn Header="{lex:Loc GridC_Origen}"  
                                 HeaderStyle="{StaticResource RightHeader}"
                                 Binding="{Binding COrigen, StringFormat=N2}" 

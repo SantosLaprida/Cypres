@@ -5,10 +5,9 @@ using Cypres2._0.Views.ManoDeObra;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows.Input;
+using Cypres2._0.Views;
 
 namespace Cypres2._0.ViewModels.ManoDeObra
 {
@@ -86,16 +85,13 @@ namespace Cypres2._0.ViewModels.ManoDeObra
 
         private void EliminarFamilia()
         {
-            var mensaje = Properties.Resources.ManoDeObra.Strings.MensajeEliminarFamilia;
+            var message = Properties.Resources.ManoDeObra.Strings.MensajeEliminarFamilia + " " + _selectedFamilia.Descripcion + "?";
+            var title = Properties.Resources.ManoDeObra.Strings.SubMenuEliminar;
 
-            var result = System.Windows.MessageBox.Show(
-                $"{mensaje} '{_selectedFamilia.Descripcion}'?",
-                Properties.Resources.ManoDeObra.Strings.SubMenuEliminar,
-                System.Windows.MessageBoxButton.YesNo,
-                System.Windows.MessageBoxImage.Warning
-            );
+            var dialog = new ConfirmWindow(message, title);
+            dialog.ShowDialog();
 
-            if (result == System.Windows.MessageBoxResult.Yes)
+            if (((ConfirmWindowViewModel)dialog.DataContext).Confirmed)
             {
                 _manoDeObraService.UnassignFamilia(_selectedFamilia.Id);
                 _manoDeObraService.DeleteFamilia(_selectedFamilia.Id);
